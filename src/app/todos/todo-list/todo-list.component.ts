@@ -9,9 +9,8 @@ import { TodoService } from '../todo.service';
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[];
-  test: String = 'WUT !';
   constructor(private todoService: TodoService) {
-    this.todos = [{ id: 1, title: 'Wut !', done: false }];
+    this.todos = [];
   }
 
   ngOnInit(): void {
@@ -31,6 +30,12 @@ export class TodoListComponent implements OnInit {
         }
         return t;
       });
+    });
+  }
+
+  handleTodoDelete({ id }: Todo) {
+    this.todoService.deleteTodo(id).subscribe(() => {
+      this.todos = this.todos.filter((t) => t.id !== id);
     });
   }
 }

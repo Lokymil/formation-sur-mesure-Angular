@@ -12,8 +12,13 @@ export class TodoItemComponent {
 
   @Output()
   checkTodoEvent = new EventEmitter<Todo>();
+  checkTodo() {
+    this.checkTodoEvent.emit(this.todo);
+  }
 
-  checkTodo(todo: Todo) {
-    this.checkTodoEvent.emit(todo);
+  @Output()
+  deleteTodoEvent = new EventEmitter<Todo>();
+  deleteTodo() {
+    this.deleteTodoEvent.emit(this.todo);
   }
 }

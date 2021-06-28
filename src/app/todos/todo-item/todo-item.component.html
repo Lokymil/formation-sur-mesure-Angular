@@ -1,3 +1,5 @@
 <div>
-    <input type="checkbox" [checked]="todo.done" (click)="checkTodo(todo)"/> <div>{{todo.title}}</div>
+    <input type="checkbox" [checked]="todo.done" (click)="checkTodo()"/>
+    <div>{{todo.title}}</div>
+    <button type="button" (click)="deleteTodo()">X</button>
 </div>

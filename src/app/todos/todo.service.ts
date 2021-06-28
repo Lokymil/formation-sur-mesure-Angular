@@ -21,4 +21,8 @@ export class TodoService {
   undoTodo(id: Number) {
     return this.http.post(`${this.baseUrl}/todos/${id}/undo`, {});
   }
+
+  deleteTodo(id: Number) {
+    return this.http.delete(`${this.baseUrl}/todos/${id}`);
+  }
 }
