@@ -6,6 +6,7 @@ import { TodoListComponent } from './todos/todo-list/todo-list.component';
 const routes: Routes = [
   { path: '', component: TodoListComponent },
   { path: 'new', component: TodoFormComponent },
+  { path: 'update/:id', component: TodoFormComponent },
 ];
 
 @NgModule({

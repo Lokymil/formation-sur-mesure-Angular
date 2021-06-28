@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TodoService } from '../todo.service';
 
 @Component({
@@ -15,18 +15,34 @@ export class TodoFormComponent implements OnInit {
       Validators.maxLength(100),
     ]),
   });
+  id: Number = 0;
 
-  constructor(private todoService: TodoService, private router: Router) {}
+  constructor(
+    private todoService: TodoService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.id = params?.id || 0;
+      if (this.id) {
+        this.todoService
+          .getTodo(this.id)
+          .subscribe(({ title }) => this.todo.setValue({ title }));
+      }
+    });
+  }
 
   get title() {
     return this.todo.get('title');
   }
 
   onSubmit() {
-    this.todoService
-      .createTodo(this.todo.value)
-      .subscribe(() => this.router.navigateByUrl('/'));
+    const call = this.id
+      ? this.todoService.updateTodo(this.id, this.todo.value)
+      : this.todoService.createTodo(this.todo.value);
+
+    call.subscribe(() => this.router.navigateByUrl('/'));
   }
 }
