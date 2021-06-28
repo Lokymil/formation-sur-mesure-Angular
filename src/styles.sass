@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./colors"
+
+a
+    text-decoration: none
+    color: $text-color
+    &:visited
+        text-decoration: none
+        color: $text-color
+
+    &:hover
+        background-color: $hover-color
+
+    &:active
+        background-color: $active-color
+
+.active-link
+    background-color: $selected-color
+
+button, .button
+    display: inline-block
+    margin: 0.5rem
+    border: 1px solid $hover-color
+    padding: 0.5rem
+    border-radius: 5px
+    background-color: $bg-color
+    font-family: inherit
+    font-size: 1rem
+
+    &:hover
+        background-color: $hover-color
+
+    &:active
+        background-color: $active-color
+
+    &:disabled
+        background-color: $bg-color
+        cursor: not-allowed

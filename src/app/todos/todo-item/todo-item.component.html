@@ -1,6 +1,24 @@
-<div>
-    <input type="checkbox" [checked]="todo.done" (click)="checkTodo()"/>
-    <div>{{todo.title}}</div>
-    <button type="button" (click)="deleteTodo()">X</button>
-    <a [routerLink]="['update', todo.id]">Modifier</a>
+<div class="todo-item">
+  <div class="todo-item__check-wrapper">
+    <input
+      type="checkbox"
+      [checked]="todo.done"
+      (click)="checkTodo()"
+      class="todo-item__check-input"
+    />
+  </div>
+  <div class="todo-item__content">
+    <div
+      [ngClass]="{
+        'todo-item__title': true,
+        'todo-item__title_done': todo?.done || false
+      }"
+    >
+      {{ todo.title }}
+    </div>
+  </div>
+  <div class="todo-item__actions">
+    <button type="button" (click)="deleteTodo()">Supprimer</button>
+    <a [routerLink]="['update', todo.id]" class="button">Modifier</a>
+  </div>
 </div>

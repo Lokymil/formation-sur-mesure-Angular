@@ -1,3 +1,20 @@
-<a routerLink="/">Liste</a>
-<a routerLink="/new">Nouveau</a>
-<router-outlet></router-outlet>
+<div class="header">
+  <nav class="header__nav">
+    <a class="header__nav-link header__app-name" routerLink="/"
+      ><h1>Votre TODO liste</h1></a
+    >
+    <a
+      class="header__nav-link"
+      routerLink="/"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="active-link"
+      >Liste</a
+    >
+    <a class="header__nav-link" routerLink="/new" routerLinkActive="active-link"
+      >Nouveau</a
+    >
+  </nav>
+</div>
+<div class="body">
+  <router-outlet></router-outlet>
+</div>

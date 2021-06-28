@@ -1,14 +1,25 @@
-<form [formGroup]="todo" (ngSubmit)="onSubmit()">
-    <label>Titre :</label>
-    <input id="name" type="text" formControlName="title">
-    <div *ngIf="title?.invalid && (title?.dirty || title?.touched)">
-        <div *ngIf="title?.errors?.required">
-            Le titre est obligatoire.
-        </div>
-        <div *ngIf="title?.errors?.maxlength">
-            Le titre est trop long.
-        </div>
-    </div>
+<form [formGroup]="todo" (ngSubmit)="onSubmit()" class="todo-form">
+  <h2 *ngIf="id === 0">Nouvelle todo</h2>
+  <h2 *ngIf="id !== 0">Modification de la todo {{ id }}</h2>
 
-    <button type="submit" [disabled]="!todo?.valid">Valider</button>
+  <div class="todo-form__content">
+    <div class="todo-form__field">
+      <label class="todo-form__label">Titre :</label>
+      <input
+        class="todo-form__input"
+        id="name"
+        type="text"
+        formControlName="title"
+      />
+      <div
+        *ngIf="title?.invalid && (title?.dirty || title?.touched)"
+        class="todo-form__field-error"
+      >
+        <div *ngIf="title?.errors?.required">Le titre est obligatoire.</div>
+        <div *ngIf="title?.errors?.maxlength">Le titre est trop long.</div>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!todo?.valid">Valider</button>
 </form>

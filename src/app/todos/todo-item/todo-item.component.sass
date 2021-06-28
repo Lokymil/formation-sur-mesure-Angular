@@ -1,0 +1,33 @@
+@import "../../../colors"
+
+.todo-item
+    width: 50%
+    margin-bottom: 1rem
+    border: 1px solid $hover-color
+    border-radius: 5px
+    display: grid
+    grid-template-columns: 1fr 8fr 4fr
+
+    &__check-wrapper
+        display: flex
+        justify-content: center
+        align-items: center
+
+    &__check-input
+        width: 1.2rem
+        height: 1.2rem
+
+    &__content
+        display: flex
+        justify-content: flex-start
+        align-items: center
+
+    &__title
+        font-size: 1.2rem
+        &_done
+            text-decoration: line-through
+
+    &__actions
+        display: flex
+        justify-content: flex-end
+        align-items: center
