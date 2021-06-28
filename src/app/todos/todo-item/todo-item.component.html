@@ -2,4 +2,5 @@
     <input type="checkbox" [checked]="todo.done" (click)="checkTodo()"/>
     <div>{{todo.title}}</div>
     <button type="button" (click)="deleteTodo()">X</button>
+    <a [routerLink]="['update', todo.id]">Modifier</a>
 </div>
