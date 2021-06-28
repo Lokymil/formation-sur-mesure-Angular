@@ -13,4 +13,12 @@ export class TodoService {
   getAllTodos() {
     return this.http.get<Todo[]>(`${this.baseUrl}/todos`);
   }
+
+  doneTodo(id: Number) {
+    return this.http.post(`${this.baseUrl}/todos/${id}/done`, {});
+  }
+
+  undoTodo(id: Number) {
+    return this.http.post(`${this.baseUrl}/todos/${id}/undo`, {});
+  }
 }

@@ -1,2 +1,2 @@
 <h1>Todo list</h1>
-<div *ngFor="let todo of todos">{{todo.title}}</div>
+<app-todo-item *ngFor="let todo of todos" [todo]="todo" (checkTodoEvent)="handleTodoCheck($event)"></app-todo-item>

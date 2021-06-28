@@ -16,8 +16,21 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.todoService.getAllTodos().subscribe((data: Todo[]) => {
-      console.log(data);
       this.todos = data;
+    });
+  }
+
+  handleTodoCheck({ id, done }: Todo) {
+    const call = done
+      ? this.todoService.undoTodo(id)
+      : this.todoService.doneTodo(id);
+    call.subscribe(() => {
+      this.todos = this.todos.map((t) => {
+        if (t.id === id) {
+          return { ...t, done: !done };
+        }
+        return t;
+      });
     });
   }
 }
