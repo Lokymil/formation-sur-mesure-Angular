@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Todo } from './todo';
+import { NewTodo } from './model/new-todo';
+import { Todo } from './model/todo';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class TodoService {
     return this.http.delete(`${this.baseUrl}/todos/${id}`);
   }
 
-  createTodo(title: String) {
-    return this.http.post<Todo>(`${this.baseUrl}/todos`, { title });
+  createTodo(todo: NewTodo) {
+    return this.http.post<Todo>(`${this.baseUrl}/todos`, todo);
   }
 }

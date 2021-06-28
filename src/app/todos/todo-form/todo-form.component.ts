@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TodoService } from '../todo.service';
 
@@ -9,7 +9,9 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo-form.component.sass'],
 })
 export class TodoFormComponent implements OnInit {
-  title = new FormControl('');
+  todo = new FormGroup({
+    title: new FormControl(''),
+  });
 
   constructor(private todoService: TodoService, private router: Router) {}
 
@@ -17,7 +19,7 @@ export class TodoFormComponent implements OnInit {
 
   onSubmit() {
     this.todoService
-      .createTodo(this.title.value)
+      .createTodo(this.todo.value)
       .subscribe(() => this.router.navigateByUrl('/'));
   }
 }
