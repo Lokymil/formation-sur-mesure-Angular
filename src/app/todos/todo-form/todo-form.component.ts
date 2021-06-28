@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TodoService } from '../todo.service';
 
@@ -10,12 +10,19 @@ import { TodoService } from '../todo.service';
 })
 export class TodoFormComponent implements OnInit {
   todo = new FormGroup({
-    title: new FormControl(''),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(100),
+    ]),
   });
 
   constructor(private todoService: TodoService, private router: Router) {}
 
   ngOnInit(): void {}
+
+  get title() {
+    return this.todo.get('title');
+  }
 
   onSubmit() {
     this.todoService
